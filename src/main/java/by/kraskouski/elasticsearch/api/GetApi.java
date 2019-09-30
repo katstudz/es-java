@@ -35,7 +35,7 @@ public class GetApi {
         final User user = prepareUser();
         createUserRequest(user);
 
-        final GetRequest request = new GetRequest(index, type, user.getId());
+        final GetRequest request = new GetRequest(index, type, user.getId().toString());
         final GetResponse response = client.get(request, Application.prepareAuthHeader());
         final User responseUser = mapper.readValue(response.getSourceAsString(), User.class);
         assert user.equals(responseUser);
@@ -53,17 +53,17 @@ public class GetApi {
     }
 
     private void createUserRequest(final User user) throws IOException {
-        final IndexRequest indexRequest = new IndexRequest(index, type, user.getId());
+        final IndexRequest indexRequest = new IndexRequest(index, type, user.getId().toString());
         indexRequest.source(mapper.writeValueAsString(user), XContentType.JSON);
 
         client.index(indexRequest, Application.prepareAuthHeader());
     }
 
     private User prepareUser() {
-        return User.getBuilder()
-                .setId(UUID.randomUUID().toString())
-                .setFirstname("Alexandr")
-                .setLastname("Lukashenko")
+        return User.builder()
+                .firstname("Alexandr")
+                .lastname("Lukashenko")
+                .age(32)
                 .build();
     }
 }

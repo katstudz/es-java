@@ -42,6 +42,9 @@ public class IndexApi {
 
         final Header[] headers = Application.prepareAuthHeader();
         final IndexResponse response = client.index(indexRequest, headers);
+        System.out.println(response.getIndex());
+        System.out.println(response.status());
+        System.out.println(response.getResult());
         assert response.status().equals(RestStatus.OK);
 
     }
