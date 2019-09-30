@@ -3,8 +3,6 @@ package by.kraskouski.elasticsearch.api;
 
 import by.kraskouski.elasticsearch.Application;
 import by.kraskouski.elasticsearch.model.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.var;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
@@ -18,7 +16,6 @@ import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Samples of using elasticsearch index API requests.
@@ -58,16 +55,16 @@ public class AggregationApi {
                 .build();
 
         final BulkRequest request = new BulkRequest();
-        ObjectMapper oMapper = new ObjectMapper();
-
-        byte[] bytes1 =  oMapper.writeValueAsBytes(userKM);
-        request.add(new IndexRequest("email_subscription", "data",
-                userKM.getId().toString()).source(bytes1, XContentType.JSON));
-
-        byte[] bytes2 =  oMapper.writeValueAsBytes(userWW);
-        request.add(new IndexRequest("email_subscription", "data",
-                userKM.getId().toString()).source(bytes2, XContentType.JSON));
-        request.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
-        client.bulk(request, Application.prepareAuthHeader());
+//        ObjectMapper oMapper = new ObjectMapper();
+//
+//        byte[] bytes1 =  oMapper.writeValueAsBytes(userKM);
+//        request.add(new IndexRequest("email_subscription", "data",
+//                userKM.getId().toString()).source(bytes1, XContentType.JSON));
+//
+//        byte[] bytes2 =  oMapper.writeValueAsBytes(userWW);
+//        request.add(new IndexRequest("email_subscription", "data",
+//                userKM.getId().toString()).source(bytes2, XContentType.JSON));
+//        request.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
+//        client.bulk(request, Application.prepareAuthHeader());
     }
 }

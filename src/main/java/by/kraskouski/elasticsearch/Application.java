@@ -1,5 +1,6 @@
 package by.kraskouski.elasticsearch;
 
+import by.kraskouski.elasticsearch.api.AddElem;
 import by.kraskouski.elasticsearch.api.AggregationApi;
 import by.kraskouski.elasticsearch.api.GetApi;
 import by.kraskouski.elasticsearch.api.IndexApi;
@@ -44,10 +45,8 @@ public class Application {
 
     public static void main(final String... args) throws IOException {
         try {
-//            new IndexApi(CLIENT, INDEX, TYPE).exampleWithJsonRequest();
-//            new GetApi(CLIENT, INDEX, TYPE).getRequest();
-//            new GetApi(CLIENT, INDEX, TYPE).getRequestInvalidIndex();
-            new AggregationApi(CLIENT, INDEX, TYPE).metricsMaxAggregation();
+            
+            AddElem addElem = new AddElem();
         } finally {
             CLIENT.close();
         }
